@@ -3,6 +3,7 @@ import 'package:maintenance_service_app/common/color_extension.dart';
 import 'package:maintenance_service_app/common/extension.dart';
 import 'package:maintenance_service_app/common_widget/round_button.dart';
 import 'package:maintenance_service_app/common_widget/round_textfield.dart';
+import 'package:maintenance_service_app/screen/login/mobile_verify_screen.dart';
 import 'package:maintenance_service_app/screen/login/sign_in_mobile_screen.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -142,7 +143,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           child: RoundButton(
                               title: "SIGN UP",
                               fontWeight: FontWeight.bold,
-                              onPressed: () {}),
+                              onPressed: () {
+                                context.push( const MobileVerifyScreen() );
+                              }),
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 12),
