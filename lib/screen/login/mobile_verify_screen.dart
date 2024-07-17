@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:maintenance_service_app/common/color_extension.dart';
 import 'package:maintenance_service_app/common/extension.dart';
+import 'package:maintenance_service_app/screen/login/verify_message_screen.dart';
 
 class MobileVerifyScreen extends StatefulWidget {
   const MobileVerifyScreen({super.key});
@@ -138,7 +139,10 @@ class _MobileVerfiyScreenState extends State<MobileVerifyScreen> {
                       onSubmit: (String verificationCode) {}, // end onSubmit
                     ),
                     TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+
+                         
+                        },
                         child: Text(
                           "Resend OTP",
                           style: TextStyle(
@@ -149,6 +153,9 @@ class _MobileVerfiyScreenState extends State<MobileVerifyScreen> {
                         )),
                     const Spacer(),
                     InkWell(
+                      onTap: (){
+                         context.push(const VerifyMessageScreen());
+                      },
                       borderRadius: BorderRadius.circular(40),
                       child: Container(
                         width: 80,
