@@ -8,6 +8,7 @@ class TColor {
   static Color get title => const Color(0xff312C66);
   static Color get placeholder => const Color(0xffa4a4a4);
   static Color get chatTextBG => const Color(0xff115173);
+  static Color get chatTextBG2 => const Color(0xffF4F6FF);
 }
 
 

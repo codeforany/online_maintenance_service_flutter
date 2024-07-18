@@ -5,6 +5,7 @@ import 'package:maintenance_service_app/common_widget/round_button.dart';
 import 'package:maintenance_service_app/common_widget/round_textfield.dart';
 import 'package:maintenance_service_app/screen/login/sign_in_mobile_screen.dart';
 import 'package:maintenance_service_app/screen/login/sign_up_screen.dart';
+import 'package:maintenance_service_app/screen/message/chat_message_screen.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -115,7 +116,9 @@ class _SignInScreenState extends State<SignInScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                context.push(const ChatMessageScreen());
+                              },
                               child: Text(
                                 "Forgot Password |",
                                 style: TextStyle(
@@ -126,7 +129,7 @@ class _SignInScreenState extends State<SignInScreen> {
                             ),
                             TextButton(
                               onPressed: () {
-                                context.push( const SignInMobileScreen());
+                                context.push(const SignInMobileScreen());
                               },
                               child: Text(
                                 "OTP LOGIN",
@@ -182,9 +185,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       width: context.width * 0.65,
                       type: RoundButtonType.line,
                       onPressed: () {
-
-                          context.push( const SignUpScreen() );
-
+                        context.push(const SignUpScreen());
                       }),
                 ],
               ),
