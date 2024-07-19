@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:maintenance_service_app/common/color_extension.dart';
 import 'package:maintenance_service_app/common/extension.dart';
+import 'package:maintenance_service_app/common_widget/image_picker_screen.dart';
+import 'package:maintenance_service_app/common_widget/popup_layout.dart';
 
 class ChatMessageScreen extends StatefulWidget {
   const ChatMessageScreen({super.key});
@@ -91,7 +94,7 @@ class _ChatMessageScreenState extends State<ChatMessageScreen> {
                             horizontal: 15, vertical: 15),
                         itemBuilder: (context, index) {
                           var isSender = index % 2 == 1;
-                    
+
                           return Row(
                             mainAxisAlignment: isSender
                                 ? MainAxisAlignment.end
@@ -116,16 +119,17 @@ class _ChatMessageScreenState extends State<ChatMessageScreen> {
                                 constraints: BoxConstraints(
                                     maxWidth: context.width * 0.65),
                                 decoration: BoxDecoration(
-                                  color: isSender
-                                      ? TColor.chatTextBG
-                                      : TColor.chatTextBG2,
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: const Radius.circular(30),
-                                    topRight: const Radius.circular(30),
-                                    bottomLeft: Radius.circular( isSender ? 30 : 0 ),
-                                    bottomRight: Radius.circular(!isSender ? 30 : 0),
-                                  )
-                                ),
+                                    color: isSender
+                                        ? TColor.chatTextBG
+                                        : TColor.chatTextBG2,
+                                    borderRadius: BorderRadius.only(
+                                      topLeft: const Radius.circular(30),
+                                      topRight: const Radius.circular(30),
+                                      bottomLeft:
+                                          Radius.circular(isSender ? 30 : 0),
+                                      bottomRight:
+                                          Radius.circular(!isSender ? 30 : 0),
+                                    )),
                                 child: Text(
                                   isSender
                                       ? "Thanks Charlotte can you please send me a picture of the new Shower"
@@ -161,12 +165,96 @@ class _ChatMessageScreenState extends State<ChatMessageScreen> {
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 80,
-              )
             ],
           )
         ],
+      ),
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(color: TColor.secondary),
+        padding: EdgeInsets.only(
+          left: 20,
+          right: 20,
+          bottom: 20.0 + MediaQuery.of(context).viewInsets.bottom,
+          top: 10,
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  PopupLayout(
+                    bgColor: Colors.black26,
+                    child: ImagePickerScreen(
+                      didSelect: (selectPath) {
+                        debugPrint(selectPath);
+                      },
+                    ),
+                  ),
+                );
+              },
+              child: Container(
+                height: 55,
+                width: 55,
+                decoration: BoxDecoration(
+                    color: TColor.primary,
+                    borderRadius: BorderRadius.circular(30)),
+                alignment: Alignment.center,
+                child: Image.asset(
+                  "assets/img/camera.png",
+                  width: 30,
+                  height: 30,
+                ),
+              ),
+            ),
+            const SizedBox(
+              width: 8,
+            ),
+            Expanded(
+                child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+              decoration: BoxDecoration(
+                  color: Colors.white, borderRadius: BorderRadius.circular(30)),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: ConstrainedBox(
+                      constraints: const BoxConstraints(maxHeight: 100),
+                      child: TextField(
+                        maxLines: null,
+                        autocorrect: false,
+                        decoration: InputDecoration(
+                          contentPadding: const EdgeInsets.all(12),
+                          enabledBorder: InputBorder.none,
+                          focusedBorder: InputBorder.none,
+                          hintText: "Type Message here",
+                          hintStyle: TextStyle(
+                            color: TColor.placeholder,
+                            fontSize: 15,
+                          ),
+                        ),
+                        style: TextStyle(
+                          color: TColor.primaryText,
+                          fontSize: 15,
+                        ),
+                      ),
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {},
+                    child: Image.asset(
+                      "assets/img/send.png",
+                      height: 35,
+                      width: 35,
+                    ),
+                  )
+                ],
+              ),
+            ))
+          ],
+        ),
       ),
     );
   }
