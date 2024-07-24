@@ -4,6 +4,7 @@ import 'package:maintenance_service_app/common/color_extension.dart';
 import 'package:maintenance_service_app/common/extension.dart';
 import 'package:maintenance_service_app/common_widget/link_button.dart';
 import 'package:maintenance_service_app/common_widget/select_icon_title_button.dart';
+import 'package:maintenance_service_app/screen/home/best_offer_cell.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -18,6 +19,19 @@ class _HomeScreenState extends State<HomeScreen> {
     "assets/img/banner2.png",
     "assets/img/banner3.png",
     "assets/img/banner4.png",
+  ];
+
+  List bestOfferArr = [
+    {
+      "img": "assets/img/best_1.png",
+      "title": "Bathroom Cleaning",
+      "subtitle": "Free Fan Cleaning & More"
+    },
+    {
+      "img": "assets/img/best_2.png",
+      "title": "Sofa cleaning",
+      "subtitle": "Free Cushions Cleaning & More"
+    },
   ];
 
   PageController controller = PageController();
@@ -285,10 +299,12 @@ class _HomeScreenState extends State<HomeScreen> {
                             return Padding(
                               padding: const EdgeInsets.all(4.0),
                               child: Container(
-                                width: selectPage == index ?  20 : 8,
+                                width: selectPage == index ? 20 : 8,
                                 height: 8,
                                 decoration: BoxDecoration(
-                                    color: selectPage == index ? TColor.primary : Colors.white,
+                                    color: selectPage == index
+                                        ? TColor.primary
+                                        : Colors.white,
                                     borderRadius: BorderRadius.circular(4)),
                               ),
                             );
@@ -296,6 +312,66 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       )
                     ],
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(top: 15),
+                    padding: const EdgeInsets.symmetric(vertical: 15),
+                    width: double.maxFinite,
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 25),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                "Best Offers",
+                                style: TextStyle(
+                                  color: TColor.primaryText,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 4,
+                              ),
+                              Text(
+                                "Hygienic & single-use products | low-contact services",
+                                style: TextStyle(
+                                  color: TColor.secondaryText,
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: context.width * 0.6,
+                          child: ListView.separated(
+                              scrollDirection: Axis.horizontal,
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 15, horizontal: 15),
+                              itemBuilder: (context, index) {
+                                var obj = bestOfferArr[index];
+
+                                return BestOfferCell(obj: obj, onPressed: (){
+                                  debugPrint(obj.toString());
+                                });
+                              },
+                              separatorBuilder: (context, index) =>
+                                  const SizedBox(
+                                    width: 15,
+                                  ),
+                              itemCount: bestOfferArr.length),
+                        )
+                      ],
+                    ),
                   )
                 ],
               ),
