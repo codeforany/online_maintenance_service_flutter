@@ -9,6 +9,7 @@ class RoundButton extends StatelessWidget {
   final double height;
   final double fontSize;
   final FontWeight fontWeight;
+  final Color? lineColor;
   final double width;
   final double radius;
   final VoidCallback onPressed;
@@ -21,6 +22,7 @@ class RoundButton extends StatelessWidget {
       this.fontSize = 17,
       this.fontWeight = FontWeight.normal,
       this.width = double.maxFinite,
+      this.lineColor,
       this.radius = 30,
       required this.onPressed});
 
@@ -38,23 +40,22 @@ class RoundButton extends StatelessWidget {
               ? TColor.primary
               : type == RoundButtonType.secondary
                   ? TColor.secondary
-                  : Colors.white,
+                  :  Colors.transparent,
           border: type == RoundButtonType.line
-              ? Border.all(color: TColor.secondary, width: 2)
+              ? Border.all(color: lineColor ?? TColor.secondary, width: 2)
               : null,
           borderRadius: BorderRadius.circular(radius),
         ),
         height: height,
         child: Text(
-
-            title,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color:  type == RoundButtonType.line ? TColor.primaryText : Colors.white,
+          title,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+              color: type == RoundButtonType.line
+                  ? (lineColor ?? TColor.primaryText)
+                  : Colors.white,
               fontSize: fontSize,
-              fontWeight: fontWeight
-            ),
-
+              fontWeight: fontWeight),
         ),
       ),
     );

@@ -54,7 +54,7 @@ class NewRoundTextField extends StatelessWidget {
   final String hintText;
   final TextEditingController? controller;
   final TextInputType? keyboardType;
-  final double radius;
+  final double radius;   
   final bool obscureText;
   final Widget? right;
   final bool isPadding;

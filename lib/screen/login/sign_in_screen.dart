@@ -3,6 +3,7 @@ import 'package:maintenance_service_app/common/color_extension.dart';
 import 'package:maintenance_service_app/common/extension.dart';
 import 'package:maintenance_service_app/common_widget/round_button.dart';
 import 'package:maintenance_service_app/common_widget/round_textfield.dart';
+import 'package:maintenance_service_app/screen/home/choose_service_screen.dart';
 import 'package:maintenance_service_app/screen/home/home_screen.dart';
 import 'package:maintenance_service_app/screen/login/sign_in_mobile_screen.dart';
 import 'package:maintenance_service_app/screen/login/sign_up_screen.dart';
@@ -112,7 +113,7 @@ class _SignInScreenState extends State<SignInScreen> {
                               title: "SIGN IN",
                               fontWeight: FontWeight.bold,
                               onPressed: () {
-                                context.push(const HomeScreen());
+                                context.push(const ChooseServiceScreen());
                               }),
                         ),
                         Row(
