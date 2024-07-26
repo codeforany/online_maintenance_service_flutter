@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:maintenance_service_app/common/color_extension.dart';
 import 'package:maintenance_service_app/common/extension.dart';
 import 'package:maintenance_service_app/common_widget/round_button.dart';
+import 'package:maintenance_service_app/screen/profile/rate_of_service_screen.dart';
 
 class ChooseServiceScreen extends StatefulWidget {
   const ChooseServiceScreen({super.key});
@@ -21,7 +22,9 @@ class _ChooseServiceScreenState extends State<ChooseServiceScreen> {
         backgroundColor: TColor.primary,
         elevation: 0,
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            context.push(const RateOfServiceScreen());
+          },
           icon: Image.asset(
             "assets/img/menu.png",
           ),

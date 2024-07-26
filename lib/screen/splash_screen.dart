@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:maintenance_service_app/screen/login/sign_in_screen.dart';
 // import 'package:maintenance_service_app/common/extension.dart';
 
@@ -14,6 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.leanBack);
     loadView();
   }
 
