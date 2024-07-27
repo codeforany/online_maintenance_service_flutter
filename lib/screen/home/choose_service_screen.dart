@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:maintenance_service_app/common/color_extension.dart';
 import 'package:maintenance_service_app/common/extension.dart';
 import 'package:maintenance_service_app/common_widget/round_button.dart';
+import 'package:maintenance_service_app/screen/home/book_service_screen.dart';
 import 'package:maintenance_service_app/screen/profile/rate_of_service_screen.dart';
 
 class ChooseServiceScreen extends StatefulWidget {
@@ -312,8 +313,13 @@ class _ChooseServiceScreenState extends State<ChooseServiceScreen> {
                         width: 15,
                       ),
                       Expanded(
-                          child: RoundButton(
-                              title: "Search Now", onPressed: () {})),
+                        child: RoundButton(
+                          title: "Search Now",
+                          onPressed: () {
+                            context.push(const BookingServiceScreen());
+                          },
+                        ),
+                      ),
                     ],
                   ),
                 ),
