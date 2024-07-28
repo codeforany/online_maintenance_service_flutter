@@ -3,6 +3,7 @@ import 'package:maintenance_service_app/common/color_extension.dart';
 import 'package:maintenance_service_app/common/extension.dart';
 import 'package:maintenance_service_app/common_widget/round_button.dart';
 import 'package:maintenance_service_app/common_widget/select_icon_title_button.dart';
+import 'package:maintenance_service_app/screen/home/request_accepting_screen.dart';
 
 class BookingServiceScreen extends StatefulWidget {
   const BookingServiceScreen({super.key});
@@ -201,7 +202,9 @@ class _BookingServiceScreenState extends State<BookingServiceScreen> {
                     Expanded(
                       child: RoundButton(
                         title: "Book Now",
-                        onPressed: () {},
+                        onPressed: () {
+                          context.push( const RequestAcceptScreen() );
+                        },
                       ),
                     )
                   ],
