@@ -4,6 +4,7 @@ import 'package:maintenance_service_app/common/extension.dart';
 import 'package:maintenance_service_app/common_widget/icon_title_button.dart';
 import 'package:maintenance_service_app/common_widget/round_button.dart';
 import 'package:maintenance_service_app/common_widget/select_icon_title_button.dart';
+import 'package:maintenance_service_app/screen/home/payment_method_screen.dart';
 import 'package:maintenance_service_app/screen/message/chat_message_screen.dart';
 
 class RequestAcceptScreen extends StatefulWidget {
@@ -140,7 +141,7 @@ class _RequestAcceptScreenState extends State<RequestAcceptScreen> {
                       Expanded(
                         child: IconTitleButton(
                             icon: "assets/img/calling.png",
-                            title: "Call Now",
+                            title: "Call Now", 
                             onPressed: () {}),
                       ),
                       Expanded(
@@ -194,7 +195,9 @@ class _RequestAcceptScreenState extends State<RequestAcceptScreen> {
                     Expanded(
                       child: RoundButton(
                         title: "Pay Now",
-                        onPressed: () {},
+                        onPressed: () {
+                          context.push( const PaymentMethodScreen() );
+                        },
                       ),
                     )
                   ],
