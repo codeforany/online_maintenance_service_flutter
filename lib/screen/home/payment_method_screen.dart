@@ -3,6 +3,7 @@ import 'package:maintenance_service_app/common/color_extension.dart';
 import 'package:maintenance_service_app/common/extension.dart';
 import 'package:maintenance_service_app/common_widget/icon_select_button.dart';
 import 'package:maintenance_service_app/common_widget/round_button.dart';
+import 'package:maintenance_service_app/screen/home/order_summary_screen.dart';
 
 class PaymentMethodScreen extends StatefulWidget {
   const PaymentMethodScreen({super.key});
@@ -180,7 +181,7 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                                                 fontSize: 12,
                                               ),
                                             ),
-                                          ], 
+                                          ],
                                         ),
                                       ),
                                       IconButton(
@@ -193,13 +194,112 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                                       )
                                     ],
                                   ),
-                                 
                                 ],
                               ),
                             ),
                           ],
                         )
-                      : Container()),
+                      : Column(
+                          children: [
+                            Container(
+                              margin: const EdgeInsets.symmetric(
+                                horizontal: 20,
+                                vertical: 20,
+                              ),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 20,
+                                vertical: 30,
+                              ),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(25),
+                                boxShadow: const [
+                                  BoxShadow(
+                                      color: Colors.black12, blurRadius: 2)
+                                ],
+                              ),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Text(
+                                          "Payment",
+                                          style: TextStyle(
+                                            color: TColor.primaryText,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 15,
+                                        ),
+                                        Row(
+                                          children: [
+                                            Image.asset(
+                                              "assets/img/master_card.png",
+                                              width: 70,
+                                            ),
+                                            const SizedBox(
+                                              width: 15,
+                                            ),
+                                            Expanded(
+                                                child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                Text(
+                                                  "Master Card",
+                                                  style: TextStyle(
+                                                    color: TColor.secondaryText,
+                                                    fontSize: 13,
+                                                  ),
+                                                ),
+                                                const SizedBox(
+                                                  height: 8,
+                                                ),
+                                                Text(
+                                                  "**** **** **** 4748",
+                                                  style: TextStyle(
+                                                    color: TColor.primaryText,
+                                                    fontSize: 17,
+                                                  ),
+                                                ),
+                                              ],
+                                            ))
+                                          ],
+                                        ),
+                                        const SizedBox(
+                                          height: 20,
+                                        ),
+                                        InkWell(
+                                          onTap: () {},
+                                          child: Text(
+                                            "Update",
+                                            style: TextStyle(
+                                              color: TColor.primary,
+                                              fontSize: 15,
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 8,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        )),
           Container(
               padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
               child: Row(
@@ -273,7 +373,7 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                           const SizedBox(
                             width: 8,
                           ),
-                          Text(
+                          const Text(
                             "Save Paypal ID",
                             style: TextStyle(
                               color: Colors.white,
@@ -286,7 +386,9 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                     RoundButton(
                       width: 150,
                       title: "Next",
-                      onPressed: () {},
+                      onPressed: () {
+                        context.push(const OrderSummaryScreen());
+                      },
                     ),
                   ],
                 )
