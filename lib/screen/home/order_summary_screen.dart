@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:maintenance_service_app/common/color_extension.dart';
 import 'package:maintenance_service_app/common/extension.dart';
 import 'package:maintenance_service_app/common_widget/round_button.dart';
+import 'package:maintenance_service_app/screen/home/edit_card_screen.dart';
+import 'package:maintenance_service_app/screen/home/job_detail_receipt_screen.dart';
 
 class OrderSummaryScreen extends StatefulWidget {
   const OrderSummaryScreen({super.key});
@@ -210,7 +212,9 @@ class _OrderSummaryScreenState extends State<OrderSummaryScreen> {
                               height: 20,
                             ),
                             InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                context.push( const EditCardScreen() );
+                              },
                               child: Text(
                                 "Update",
                                 style: TextStyle(
@@ -274,7 +278,9 @@ class _OrderSummaryScreenState extends State<OrderSummaryScreen> {
                     Expanded(
                       child: RoundButton(
                         title: "PAY",
-                        onPressed: () {},
+                        onPressed: () {
+                          context.push(const JobDetailReceiptScreen());
+                        },
                       ),
                     ),
                   ],
