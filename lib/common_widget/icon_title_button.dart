@@ -15,7 +15,7 @@ class IconTitleButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap:onPressed,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [

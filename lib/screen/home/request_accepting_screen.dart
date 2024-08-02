@@ -5,6 +5,7 @@ import 'package:maintenance_service_app/common_widget/icon_title_button.dart';
 import 'package:maintenance_service_app/common_widget/round_button.dart';
 import 'package:maintenance_service_app/common_widget/select_icon_title_button.dart';
 import 'package:maintenance_service_app/screen/home/payment_method_screen.dart';
+import 'package:maintenance_service_app/screen/home/rate_for_service_user_screen.dart';
 import 'package:maintenance_service_app/screen/message/chat_message_screen.dart';
 
 class RequestAcceptScreen extends StatefulWidget {
@@ -162,7 +163,9 @@ class _RequestAcceptScreenState extends State<RequestAcceptScreen> {
                         child: IconTitleButton(
                             icon: "assets/img/more.png",
                             title: "More",
-                            onPressed: () {}),
+                            onPressed: () {
+                              context.push(const RateForServiceUserScreen());
+                            }),
                       ),
                     ],
                   ),

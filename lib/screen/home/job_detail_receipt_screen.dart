@@ -398,7 +398,7 @@ class _JobDetailReceiptScreenState extends State<JobDetailReceiptScreen> {
                     ],
                   ),
                   const SizedBox(
-                    height: 15,
+                    height: 15, 
                   ),
                   DottedLine(
                     direction: Axis.horizontal,
