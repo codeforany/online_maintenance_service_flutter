@@ -1,4 +1,7 @@
+import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:maintenance_service_app/common/color_extension.dart';
 import 'package:maintenance_service_app/common/extension.dart';
 import 'package:maintenance_service_app/common_widget/round_button.dart';
@@ -38,6 +41,8 @@ class _BookingServiceScreenState extends State<BookingServiceScreen> {
 
   Map? selectItem;
 
+  final MapController controller = MapController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,7 +77,103 @@ class _BookingServiceScreenState extends State<BookingServiceScreen> {
       ),
       body: Column(
         children: [
-          const Spacer(),
+          Expanded(
+              child: Stack(
+            alignment: Alignment.topCenter,
+            children: [
+              FlutterMap(
+                mapController: controller,
+                options: const MapOptions(
+                  initialCenter: LatLng(21.170240, 72.831062),
+                  initialZoom: 12,
+                ),
+                children: [
+                  TileLayer(
+                    urlTemplate:
+                        "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                    userAgentPackageName: "com.example.app",
+                  )
+                ],
+              ),
+              Column(
+                children: [
+                  Container(
+                    margin: const EdgeInsets.only(
+                      top: 30,
+                      left: 25,
+                      right: 25,
+                    ),
+                    height: 70,
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 15,
+                      horizontal: 15,
+                    ),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(5),
+                        boxShadow: const [
+                          BoxShadow(color: Colors.black12, blurRadius: 2)
+                        ]),
+                    child: Column(
+                      // mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Container(
+                              width: 15,
+                              height: 15,
+                              decoration: BoxDecoration(
+                                  color: TColor.primary,
+                                  borderRadius: BorderRadius.circular(7.5)),
+                            ),
+                            const SizedBox(
+                              width: 8,
+                            ),
+                            Text(
+                              "Service at",
+                              style: TextStyle(
+                                color: TColor.placeholder,
+                                fontSize: 14,
+                              ),
+                            )
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        Text(
+                          "34 Keshar Vihar , Jaipurt",
+                          maxLines: 1,
+                          style: TextStyle(
+                            color: TColor.primaryText,
+                            fontSize: 14,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  DottedLine(
+                    direction: Axis.vertical,
+                    alignment: WrapAlignment.center,
+                    lineLength: 60,
+                    lineThickness: 1.0,
+                    dashLength: 4.0,
+                    dashColor: TColor.secondaryText,
+                    dashRadius: 0.0,
+                    dashGapLength: 4.0,
+                    dashGapColor: Colors.transparent,
+                    dashGapRadius: 0.0,
+                  ),
+                  Image.asset(
+                    "assets/img/center_pin.png",
+                    width: 30,
+                    height: 50,
+                  )
+                ],
+              )
+            ],
+          )),
           Container(
             height: 110,
             decoration: const BoxDecoration(color: Colors.white, boxShadow: [
@@ -203,7 +304,7 @@ class _BookingServiceScreenState extends State<BookingServiceScreen> {
                       child: RoundButton(
                         title: "Book Now",
                         onPressed: () {
-                          context.push( const RequestAcceptScreen() );
+                          context.push(const RequestAcceptScreen());
                         },
                       ),
                     )
