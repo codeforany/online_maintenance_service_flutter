@@ -1,6 +1,9 @@
+import 'dart:math';
+
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:maintenance_service_app/common/color_extension.dart';
 import 'package:maintenance_service_app/common/extension.dart';
@@ -16,6 +19,7 @@ class BookingServiceScreen extends StatefulWidget {
 }
 
 class _BookingServiceScreenState extends State<BookingServiceScreen> {
+  String pinAddress = "";
   List catArr = [
     {
       "title": "Hygiene",
@@ -83,8 +87,15 @@ class _BookingServiceScreenState extends State<BookingServiceScreen> {
             children: [
               FlutterMap(
                 mapController: controller,
-                options: const MapOptions(
-                  initialCenter: LatLng(21.170240, 72.831062),
+                options: MapOptions(
+                  // onPositionChanged: (_, __) => updatePoint(context),
+                  onMapEvent: (event) {
+                    if (event.source == MapEventSource.dragEnd) {
+                      print(" Map dragEnd -------- ");
+                      updatePoint(context);
+                    }
+                  },
+                  initialCenter: const LatLng(21.170240, 72.831062),
                   initialZoom: 12,
                 ),
                 children: [
@@ -95,6 +106,8 @@ class _BookingServiceScreenState extends State<BookingServiceScreen> {
                   )
                 ],
               ),
+
+              //30+70+60+50 =
               Column(
                 children: [
                   Container(
@@ -143,7 +156,7 @@ class _BookingServiceScreenState extends State<BookingServiceScreen> {
                           height: 8,
                         ),
                         Text(
-                          "34 Keshar Vihar , Jaipurt",
+                          pinAddress,
                           maxLines: 1,
                           style: TextStyle(
                             color: TColor.primaryText,
@@ -316,5 +329,34 @@ class _BookingServiceScreenState extends State<BookingServiceScreen> {
         ],
       ),
     );
+  }
+
+  void updatePoint(BuildContext context) {
+    var latlong =
+        controller.camera.pointToLatLng(Point(context.width / 2, 210));
+
+    print(latlong.toString());
+
+    getLatLongToAddress(latlong);
+  }
+
+  void getLatLongToAddress(LatLng location) async {
+    try {
+      List<Placemark> addressArr =
+          await placemarkFromCoordinates(location.latitude, location.longitude);
+
+      if (addressArr.isNotEmpty) {
+        print(addressArr.first.toString());
+        var pinAddresObj = addressArr.first;
+        pinAddress =
+            "${pinAddresObj.name}, ${pinAddresObj.street}, ${pinAddresObj.subLocality}, ${pinAddresObj.subAdministrativeArea}, ${pinAddresObj.administrativeArea}, ${pinAddresObj.postalCode}";
+
+        if (mounted) {
+          setState(() {});
+        }
+      }
+    } catch (e) {
+      print(e.toString());
+    }
   }
 }
